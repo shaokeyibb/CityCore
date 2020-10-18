@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'io.izzel.taboolib' version '1.2'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
+}
+
+group = 'kim.minecraft.citycore'
+version = '1.0.0'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+taboolib {
+    tabooLibVersion = '5.4'
+    loaderVersion = '2.+'
+    classifier = null
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'ink.ptms.core:v11600:11600:all'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib'
+    compileOnly fileTree(dir: 'libs', includes: ['*.jar'])
+    taboo 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0-RC2'}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'plugin.yml'
+        expand name: rootProject.name, main: project.group + ".boot.PluginBoot", version: project.version, "libVersion": taboolib.tabooLibVersion
+    }
+}

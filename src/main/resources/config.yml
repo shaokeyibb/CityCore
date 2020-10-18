@@ -1,0 +1,9 @@
+RegisterTimeTicks: 400
+CountryClaimChunkTicks: 12000
+CountryClaimChunkMaxCounts: 2
+HumanRaceEyesBlindMinDelay: 40
+HumanRaceEyesBlindMaxDelay: 120
+HumanRaceEyesBlindMaxDuration: 24
+HumanRaceEyesBlindMinDuration: 28
+HumanRaceEyesBlindRefreshTimeTicks: 5
+PlayerTagsRefreshTicks: 1
