@@ -1,5 +1,6 @@
 RegisterTimeTicks: 400
 CountryClaimChunkTicks: 12000
+HumanRaceEyesBlindEnable: true
 CountryClaimChunkMaxCounts: 2
 HumanRaceEyesBlindMinDelay: 40
 HumanRaceEyesBlindMaxDelay: 120
@@ -7,3 +8,5 @@ HumanRaceEyesBlindMaxDuration: 24
 HumanRaceEyesBlindMinDuration: 28
 HumanRaceEyesBlindRefreshTimeTicks: 5
 PlayerTagsRefreshTicks: 1
+FoodPoisonTicksFrom: 72000
+FoodPoisonTicksUntil: 144000

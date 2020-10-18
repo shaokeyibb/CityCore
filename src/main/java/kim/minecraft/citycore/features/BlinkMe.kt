@@ -16,8 +16,6 @@ import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import kotlin.random.Random
 
-@Suppress("unused")
-@TListener
 object BlinkMe : Listener {
 
     private val list = mutableMapOf<Player, Action>()
