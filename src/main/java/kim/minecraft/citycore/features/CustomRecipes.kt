@@ -18,7 +18,7 @@ import kotlin.random.Random
 object CustomRecipes {
     fun poisonFood() {
         Material.values().filter { it.isEdible }.forEach { material ->
-            ShapelessRecipe(NamespacedKey(CityCore.plugin, "potion_${material.name}"),
+            ShapelessRecipe(NamespacedKey(CityCore.plugin, "poisonFood_${material.name}"),
                     ItemStack(material).also {
                         it.addNBT("hasPoison", true.toString())
                     })
