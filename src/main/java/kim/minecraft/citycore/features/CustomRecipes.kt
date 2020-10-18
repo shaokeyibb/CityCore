@@ -1,6 +1,8 @@
 package kim.minecraft.citycore.features
 
 import kim.minecraft.citycore.CityCore
+import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
+import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kim.minecraft.citycore.utils.nbt.NBTHelper.addNBT
 import kim.minecraft.citycore.utils.nbt.NBTHelper.getNBT
 import kim.minecraft.citycore.utils.storage.SettingsStorage
@@ -30,9 +32,10 @@ object CustomRecipes {
             @EventHandler
             fun onEat(e: PlayerItemConsumeEvent) {
                 if (e.item.type.isEdible && e.item.getNBT("hasPoison").toBoolean()) {
+                    val humanRace = e.player.toCCPlayer()!!.currentHumanRace
                     object : BukkitRunnable() {
                         override fun run() {
-                            e.player.health = 0.0
+                            if (humanRace.toHumanRace().alive) e.player.health = 0.0
                         }
                     }.runTaskLater(CityCore.plugin, Random.nextLong(
                             SettingsStorage.settings.getLong("FoodPoisonTicksFrom", 72000),
