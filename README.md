@@ -1,50 +1,13 @@
-# TabooLib SDK
+CityCore Bukkit Plugin Project
 
-## TabooLib Settings
-```groovy
-taboolib {
-    tabooLibVersion = '5.35'
-    loaderVersion = '2.5'
-    classifier = null
-}
-```
 
-### Main class
-In `Java`
-```java
-public class ExamplePlugin extends Plugin {
+Powered By TabooLib 5
 
-    @Override
-    public void onLoad() {
-        // override onLoad()
-    }
 
-    @Override
-    public void onEnable() {
-        // override onEnable()
-    }
+Made by Helan_XingChen
 
-    @Override
-    public void onDisable() {
-        // override onDisable()
-    }
-}
-```
 
-In `Kotlin`
-```kotlin
-object ExamplePlugin : Plugin() {
+This plugin can only be used on StarLight Minecraft Server
 
-    override fun onLoad() {
-        // override onLoad()
-    }
 
-    override fun onEnable() {
-        // override onEnable()
-    }
-
-    override fun onDisable() {
-        // override onDisable()
-    }
-}
-```
+You have not been permitted to use this plugin
