@@ -2,7 +2,6 @@ package kim.minecraft.citycore.utils.lateralmessenger
 
 import kim.minecraft.citycore.CityCore
 import kim.minecraft.citycore.player.HumanRace
-import kim.minecraft.citycore.player.Player
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kotlinx.serialization.decodeFromString
@@ -28,7 +27,7 @@ object MailServiceManager {
     }
 
     fun HumanRace.getAvailableTasks(): List<MailService> {
-        return MailServiceManager.getTasks(this)
+        return getTasks(this)
     }
 
     fun serialize(json: Json, folder: File) {

@@ -11,7 +11,6 @@ import kim.minecraft.citycore.politics.country.CountryManager
 import kim.minecraft.citycore.politics.country.tags.CountryOwner
 import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.politics.party.PartyManager
-import kim.minecraft.citycore.utils.lateralmessenger.MailService
 import kim.minecraft.citycore.utils.lateralmessenger.MailServiceManager
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule

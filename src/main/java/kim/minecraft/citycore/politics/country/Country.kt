@@ -3,13 +3,11 @@ package kim.minecraft.citycore.politics.country
 import kim.minecraft.citycore.chunk.Chunk
 import kim.minecraft.citycore.company.tags.CompanyOwner
 import kim.minecraft.citycore.economy.currency.Currency
-import kim.minecraft.citycore.economy.wallet.tags.WalletHolder
 import kim.minecraft.citycore.economy.wallet.Wallet
-import kim.minecraft.citycore.player.HumanRace
+import kim.minecraft.citycore.economy.wallet.tags.WalletHolder
 import kim.minecraft.citycore.player.tags.MemberHolder
 import kim.minecraft.citycore.politics.country.event.CountryCreateEvent
 import kim.minecraft.citycore.politics.country.tags.CountryOwner
-import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.utils.serialzation.UUIDAsStringSerializer
 import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.Serializable

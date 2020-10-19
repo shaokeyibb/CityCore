@@ -1,8 +1,6 @@
 package kim.minecraft.citycore.politics.party
 
 import kim.minecraft.citycore.CityCore
-import kim.minecraft.citycore.politics.country.Country
-import kim.minecraft.citycore.politics.country.CountryManager
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

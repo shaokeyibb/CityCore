@@ -1,9 +1,8 @@
 package kim.minecraft.citycore.company
 
 import kim.minecraft.citycore.company.tags.CompanyOwner
-import kim.minecraft.citycore.economy.wallet.tags.WalletHolder
 import kim.minecraft.citycore.economy.wallet.Wallet
-import kim.minecraft.citycore.player.HumanRace
+import kim.minecraft.citycore.economy.wallet.tags.WalletHolder
 import kim.minecraft.citycore.player.tags.MemberHolder
 import kim.minecraft.citycore.utils.serialzation.UUIDAsStringSerializer
 import kotlinx.serialization.Serializable

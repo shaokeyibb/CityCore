@@ -7,7 +7,6 @@ import kim.minecraft.citycore.economy.currency.CurrencyManager
 import kim.minecraft.citycore.economy.wallet.Wallet
 import kim.minecraft.citycore.economy.wallet.WalletManager
 import kim.minecraft.citycore.player.HumanRace
-import kim.minecraft.citycore.player.PlayerManager
 import kim.minecraft.citycore.politics.country.tags.CountryOwner
 import kim.minecraft.citycore.politics.party.Party
 import kotlinx.serialization.decodeFromString

@@ -1,7 +1,6 @@
 package kim.minecraft.citycore.player
 
 import kim.minecraft.citycore.CityCore
-import kim.minecraft.citycore.economy.currency.CurrencyManager
 import kim.minecraft.citycore.economy.wallet.Wallet
 import kim.minecraft.citycore.economy.wallet.WalletManager
 import kim.minecraft.citycore.politics.country.Country

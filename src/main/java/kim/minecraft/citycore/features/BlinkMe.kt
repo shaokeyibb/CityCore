@@ -1,7 +1,6 @@
 package kim.minecraft.citycore.features
 
 import io.izzel.taboolib.internal.xseries.messages.ActionBar
-import io.izzel.taboolib.module.inject.TListener
 import kim.minecraft.citycore.CityCore
 import kim.minecraft.citycore.player.Player
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer

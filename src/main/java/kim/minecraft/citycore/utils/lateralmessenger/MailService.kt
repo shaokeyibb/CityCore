@@ -1,7 +1,6 @@
 package kim.minecraft.citycore.utils.lateralmessenger
 
 import kim.minecraft.citycore.CityCore
-import kim.minecraft.citycore.player.HumanRace
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kim.minecraft.citycore.utils.serialzation.UUIDAsStringSerializer
 import kotlinx.serialization.Serializable

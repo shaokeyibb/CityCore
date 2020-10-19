@@ -1,6 +1,5 @@
 package kim.minecraft.citycore.utils
 
-import com.google.common.collect.Lists
 import io.izzel.taboolib.module.inject.TListener
 import kim.minecraft.citycore.CityCore
 import kim.minecraft.citycore.player.Player

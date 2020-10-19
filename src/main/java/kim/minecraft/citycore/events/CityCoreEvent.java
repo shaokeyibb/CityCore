@@ -2,6 +2,7 @@ package kim.minecraft.citycore.events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class CityCoreEvent extends Event {
