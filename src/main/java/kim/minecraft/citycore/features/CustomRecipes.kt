@@ -21,8 +21,8 @@ object CustomRecipes {
     fun poisonFood() {
         Material.values().filter { it.isEdible }.forEach { material ->
             ShapelessRecipe(NamespacedKey(CityCore.plugin, "poisonFood_${material.name}"),
-                    ItemStack(material).also {
-                        it.addNBT("hasPoison", true.toString())
+                    ItemStack(material).apply {
+                        addNBT("hasPoison", true.toString())
                     })
                     .addIngredient(material)
                     .addIngredient(Material.SPIDER_EYE)
