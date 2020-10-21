@@ -19,7 +19,7 @@ object CityCore : Plugin() {
         initGameEnvironment()
         registerListener()
         CustomRecipes
-        BlueMapManager.runRefresh()
+        BlueMapManager.runRefresher()
     }
 
     override fun onDisable() {

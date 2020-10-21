@@ -50,7 +50,7 @@ object BlueMapManager {
         marker.save()
     }
 
-    fun runRefresh() {
+    fun runRefresher() {
         BlueMapAPI.onEnable {
             CityCore.plugin.logger.info("加载 BlueMap 区块标记")
             object : BukkitRunnable() {
