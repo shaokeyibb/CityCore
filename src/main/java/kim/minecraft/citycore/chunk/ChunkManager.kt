@@ -1,6 +1,9 @@
 package kim.minecraft.citycore.chunk
 
+import com.flowpowered.math.vector.Vector2d
+import de.bluecolored.bluemap.api.marker.Shape
 import kim.minecraft.citycore.CityCore
+import kim.minecraft.citycore.hooks.bluemap.BlueMapManager
 import kim.minecraft.citycore.politics.country.Country
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

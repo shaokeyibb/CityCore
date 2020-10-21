@@ -26,6 +26,7 @@ dependencies {
     compile 'ink.ptms.core:v11600:11600:all'
     compile 'org.jetbrains.kotlin:kotlin-stdlib'
     compileOnly fileTree(dir: 'libs', includes: ['*.jar'])
+    implementation 'com.github.BlueMap-Minecraft:BlueMapAPI:v1.3.1'
     taboo 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.0-RC2'}
 
 processResources {

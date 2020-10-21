@@ -9,6 +9,7 @@ version: ${version}
 authors: ['贺兰星辰']
 depend:
   - TrHologram
+  - BlueMap
 
 lib-download: true
 lib-version: ${libVersion}
