@@ -10,6 +10,8 @@ import kim.minecraft.citycore.politics.country.CountryManager
 import kim.minecraft.citycore.politics.country.CountryManager.toCountry
 import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.politics.party.PartyManager.toParty
+import kim.minecraft.citycore.utils.request.PlayerJoinCountryRequest
+import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -202,6 +204,51 @@ ${
                     Argument("付款金额") { listOf() })
         }
 
+    }
+
+    @SubCommand(priority = 0.1, description = "加入一个国家", type = CommandType.PLAYER, arguments = ["国家名称"])
+    val join = object : BaseSubCommand() {
+        override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
+            if ((p0 as Player).toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry != null) {
+                p0.sendMessage("§c您已经是一个国家的公民了")
+                return
+            }
+
+            val country = p3[0].toCountry()
+
+            if (country == null) {
+                p0.sendMessage("§c指定国家不存在")
+                return
+            }
+
+            PlayerJoinCountryRequest(p0.toCCPlayer()!!.currentHumanRace.toHumanRace(), country)
+        }
+
+        override fun getArguments(): Array<Argument> {
+            return arrayOf(Argument("国家名") { CountryManager.countries.values.map { it.name } })
+        }
+    }
+
+    @SubCommand(priority = 0.2, description = "同意国家加入申请", type = CommandType.PLAYER, arguments = ["在线玩家"])
+    val accept = object : BaseSubCommand() {
+        override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
+
+        }
+
+        override fun getArguments(): Array<Argument> {
+            return arrayOf(Argument("在线玩家") { Bukkit.getOnlinePlayers().map { it.toCCPlayer()?.currentHumanRace?.toHumanRace()?.name } })
+        }
+    }
+
+    @SubCommand(priority = 0.3, description = "拒绝国家加入申请", type = CommandType.PLAYER, arguments = ["在线玩家"])
+    val deny = object : BaseSubCommand() {
+        override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
+
+        }
+
+        override fun getArguments(): Array<Argument> {
+            return arrayOf(Argument("在线玩家") { Bukkit.getOnlinePlayers().map { it.toCCPlayer()?.currentHumanRace?.toHumanRace()?.name } })
+        }
     }
 
 

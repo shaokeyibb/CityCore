@@ -1,3 +1,49 @@
 package kim.minecraft.citycore.utils.request
 
-class Request
+import kim.minecraft.citycore.CityCore
+import kim.minecraft.citycore.utils.request.tags.RequestReceiver
+import kim.minecraft.citycore.utils.request.tags.RequestSender
+import org.bukkit.scheduler.BukkitRunnable
+
+abstract class Request(val sender: RequestSender, private val handlerObj: Any) {
+
+    abstract val timeOut: Long
+    abstract val type: RequestType
+
+    abstract val receiver: Array<RequestReceiver>
+    abstract val onAllow: (RequestSender, Any) -> Int
+    abstract val onDeny: (RequestSender, Any) -> Int
+
+    private val id = RequestManager.nextID()
+
+    var destroyed: Boolean = false
+
+    private val task = object : BukkitRunnable() {
+        override fun run() {
+            destroy()
+        }
+    }
+
+    fun allow(handler: RequestReceiver): Int {
+        if (destroyed) return 408
+        if (handler !in receiver) return 404
+        return onAllow(sender, handlerObj)
+    }
+
+    fun deny(handler: RequestReceiver): Int {
+        if (destroyed) return 408
+        if (handler !in receiver) return 404
+        return onDeny(sender, handlerObj)
+    }
+
+    fun destroy() {
+        destroyed = true
+        task.cancel()
+    }
+
+    init {
+        if (timeOut > 0)
+            task.runTaskTimerAsynchronously(CityCore.plugin, 0, timeOut)
+        RequestManager.requests[id] = this
+    }
+}

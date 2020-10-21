@@ -8,6 +8,8 @@ import kim.minecraft.citycore.politics.party.Party
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.bukkit.Bukkit
+import org.bukkit.OfflinePlayer
 import java.io.File
 import java.util.*
 
@@ -22,6 +24,10 @@ object PlayerManager {
 
     fun org.bukkit.entity.Player.toCCPlayer(): Player? {
         return players[uniqueId]
+    }
+
+    fun UUID.toOfflinePlayer(): OfflinePlayer {
+        return Bukkit.getOfflinePlayer(this)
     }
 
     fun UUID.toCCPlayer(): Player {
