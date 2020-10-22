@@ -27,13 +27,13 @@ abstract class Request(val sender: RequestSender, private val handlerObj: Any) {
     fun allow(handler: RequestReceiver): Int {
         if (destroyed) return 408
         if (handler !in receiver) return 404
-        return onAllow(sender, handlerObj)
+        return onAllow(sender, handlerObj).also { destroy() }
     }
 
     fun deny(handler: RequestReceiver): Int {
         if (destroyed) return 408
         if (handler !in receiver) return 404
-        return onDeny(sender, handlerObj)
+        return onDeny(sender, handlerObj).also { destroy() }
     }
 
     fun destroy() {
