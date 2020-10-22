@@ -5,6 +5,7 @@ import io.izzel.taboolib.util.Features
 import kim.minecraft.citycore.CityCore
 import kim.minecraft.citycore.player.Player
 import kim.minecraft.citycore.player.PlayerManager
+import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -24,6 +25,11 @@ class HumanRaceRespawnTask(val player: Player) {
         override fun onChat(p0: String): Boolean {
             if (p0.isEmpty() || p0.isBlank() || p0.firstOrNull { it == ' ' } != null) {
                 player.getBukkitPlayer().sendMessage("§c您的输入不合法，请重新输入")
+                HandlerList.unregisterAll(action)
+                HumanRaceRespawnTask(player)
+                return false
+            } else if (p0.toHumanRace() != null) {
+                player.getBukkitPlayer().sendMessage("一个名为 $p0 的角色已存在，请重新输入")
                 HandlerList.unregisterAll(action)
                 HumanRaceRespawnTask(player)
                 return false

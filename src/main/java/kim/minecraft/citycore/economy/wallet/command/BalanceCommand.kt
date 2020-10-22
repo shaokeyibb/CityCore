@@ -31,7 +31,7 @@ class BalanceCommand : BaseMainCommand() {
     val checkOthers = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
 
-            val temp = PlayerManager.humanRaces.values.firstOrNull { p3[0] == it.name }
+            val temp = p3[0].toHumanRace()
 
             if (temp == null) {
                 p0.sendMessage("§c指定玩家不存在")
