@@ -229,25 +229,25 @@ ${
         }
     }
 
-    @SubCommand(priority = 0.2, description = "同意国家加入申请", type = CommandType.PLAYER, arguments = ["在线玩家"])
+    @SubCommand(priority = 0.2, description = "同意国家加入申请", type = CommandType.PLAYER, arguments = ["待处理请求玩家"])
     val accept = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
 
         }
 
         override fun getArguments(): Array<Argument> {
-            return arrayOf(Argument("在线玩家") { Bukkit.getOnlinePlayers().map { it.toCCPlayer()?.currentHumanRace?.toHumanRace()?.name } })
+            return arrayOf(Argument("待处理请求玩家") { Bukkit.getOnlinePlayers().map { it.toCCPlayer()?.currentHumanRace?.toHumanRace()?.name } })
         }
     }
 
-    @SubCommand(priority = 0.3, description = "拒绝国家加入申请", type = CommandType.PLAYER, arguments = ["在线玩家"])
+    @SubCommand(priority = 0.3, description = "拒绝国家加入申请", type = CommandType.PLAYER, arguments = ["待处理请求玩家"])
     val deny = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
 
         }
 
         override fun getArguments(): Array<Argument> {
-            return arrayOf(Argument("在线玩家") { Bukkit.getOnlinePlayers().map { it.toCCPlayer()?.currentHumanRace?.toHumanRace()?.name } })
+            return arrayOf(Argument("待处理请求玩家") { Bukkit.getOnlinePlayers().map { it.toCCPlayer()?.currentHumanRace?.toHumanRace()?.name } })
         }
     }
 
