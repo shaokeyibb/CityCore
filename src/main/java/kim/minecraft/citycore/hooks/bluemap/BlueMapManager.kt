@@ -20,6 +20,9 @@ object BlueMapManager {
     }
 
     fun refreshBlueMap(api: BlueMapAPI, marker: MarkerAPI) {
+        marker.markerSets.forEach {
+            marker.removeMarkerSet(it)
+        }
         val colors: MutableMap<Country, Pair<Color, Color>> = mutableMapOf()
         CountryManager.countries.values.forEach {
             colors[it] = Pair(Color(102, 204, 255),
