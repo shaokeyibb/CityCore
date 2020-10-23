@@ -38,6 +38,10 @@ data class Chunk(val chunkSearcher: ChunkSearcher, @Serializable(with = UUIDAsSt
         return belongingsCountry != null
     }
 
+    fun hasTempOwner(): Boolean {
+        return tempBelongingsCountry != null
+    }
+
     fun getBukkitChunk(): Chunk {
         return Bukkit.getWorld(chunkSearcher.world)!!.getChunkAt(chunkSearcher.x, chunkSearcher.z)
     }

@@ -3,6 +3,7 @@ package kim.minecraft.citycore.chunk
 import com.flowpowered.math.vector.Vector2d
 import de.bluecolored.bluemap.api.marker.Shape
 import kim.minecraft.citycore.CityCore
+import kim.minecraft.citycore.chunk.ChunkManager.toCCChunk
 import kim.minecraft.citycore.hooks.bluemap.BlueMapManager
 import kim.minecraft.citycore.politics.country.Country
 import kotlinx.serialization.decodeFromString
@@ -18,6 +19,10 @@ object ChunkManager {
         val temp = Chunk.ChunkSearcher(this.world.name, this.x, this.z)
         return if (!chunks.contains(temp)) createChunk(this.world.name, this.x, this.z, null, null)
         else chunks[temp]!!
+    }
+
+    fun org.bukkit.Chunk.hasCCChunk(): Boolean {
+        return chunks.contains(Chunk.ChunkSearcher(this.world.name, this.x, this.z))
     }
 
     fun createChunk(world: String, x: Int, z: Int, belongingsCountry: Country?, tempBelongingsCountry: Country?): Chunk {

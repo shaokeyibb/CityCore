@@ -17,15 +17,15 @@ class CountryClaimChunkTask(val player: Player, val country: Country, private va
             CityCore.plugin,
             chunk.chunkSearcher.toString(),
             player.getBukkitPlayer().location.clone().add(0.0, 2.0, 0.0),
-            "地块 ${chunk.chunkSearcher} 正被占领中"
+            "地块 ${chunk.chunkSearcher} 正被殖民中"
     )
 
     private val update = object : BukkitRunnable() {
         override fun run() {
-            hologram.updateLines(listOf("地块 ${chunk.chunkSearcher} 正被占领中",
-                    "占领者: ${player.currentHumanRace.toHumanRace().name}",
-                    "占领国家: ${country.name}",
-                    "占领剩余时间: ${getRemainTimeSeconds()} 秒"))
+            hologram.updateLines(listOf("地块 ${chunk.chunkSearcher} 正被殖民中",
+                    "殖民者: ${player.currentHumanRace.toHumanRace().name}",
+                    "殖民国家: ${country.name}",
+                    "殖民剩余时间: ${getRemainTimeSeconds()} 秒"))
         }
     }
 
@@ -36,7 +36,7 @@ class CountryClaimChunkTask(val player: Player, val country: Country, private va
             chunk.getBelongingsCountry()?.chunks?.remove(chunk.chunkSearcher)
             country.chunks.add(chunk.chunkSearcher)
             chunk.setBelongingsCountry(country)
-            Bukkit.broadcastMessage("国家 ${country.name} 成功占领了位于 ${chunk.chunkSearcher} 的一块地块")
+            Bukkit.broadcastMessage("国家 ${country.name} 成功殖民了位于 ${chunk.chunkSearcher} 的一块地块")
             update.cancel()
             hologram.delete()
         }
