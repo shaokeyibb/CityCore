@@ -5,7 +5,9 @@ import kim.minecraft.citycore.economy.wallet.tags.WalletHolder
 import kim.minecraft.citycore.economy.wallet.Wallet
 import kim.minecraft.citycore.permission.PermissionHolder
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
+import kim.minecraft.citycore.politics.country.CountryManager.toCountry
 import kim.minecraft.citycore.politics.country.tags.CountryOwner
+import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.utils.request.tags.RequestReceiver
 import kim.minecraft.citycore.utils.request.tags.RequestSender
 import kim.minecraft.citycore.utils.serialzation.UUIDAsStringSerializer
@@ -24,6 +26,15 @@ data class HumanRace(@Serializable(with = UUIDAsStringSerializer::class) val pla
 
     fun getPlayer(): Player {
         return player.toCCPlayer()
+    }
+
+    fun isOwnerOrPartyOperatorInCurrentCountry(): Boolean {
+        if (currentCountry == null) return false
+        return if (currentCountry!!.toCountry().owner is Party) {
+            uniqueID in (currentCountry!!.toCountry().owner as Party).operatorHumanRaces
+        } else {
+            currentCountry!!.toCountry().owner.uniqueID == uniqueID
+        }
     }
 
     override fun hashCode(): Int {

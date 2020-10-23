@@ -151,10 +151,8 @@ ${
                 return
             }
 
-            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry!!.toCountry().owner != p0.toCCPlayer()!!.currentHumanRace.toHumanRace() &&
-                    (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry!!.toCountry().owner == p0.toCCPlayer()!!.currentHumanRace.toHumanRace().currentParty?.toParty() &&
-                            p0.toCCPlayer()!!.currentHumanRace.toHumanRace() != p0.toCCPlayer()!!.currentHumanRace.toHumanRace().currentParty!!.toParty().ownerHumanRace.toHumanRace())) {
-                p0.sendMessage("§c您并非一个国家的所有者或执政党党魁，无法向其他国家转账")
+            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+                p0.sendMessage("§c您并非一个国家的所有者或执政党高层，无法向其他国家转账")
                 return
             }
 

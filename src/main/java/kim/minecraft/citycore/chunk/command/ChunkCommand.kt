@@ -25,10 +25,8 @@ class ChunkCommand : BaseMainCommand() {
             return
         }
 
-        if (sender.toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry!!.toCountry().owner != sender.toCCPlayer()!!.currentHumanRace.toHumanRace() &&
-                (sender.toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry!!.toCountry().owner == sender.toCCPlayer()!!.currentHumanRace.toHumanRace().currentParty?.toParty() &&
-                        sender.toCCPlayer()!!.currentHumanRace != sender.toCCPlayer()!!.currentHumanRace.toHumanRace().currentParty!!.toParty().ownerHumanRace)) {
-            sender.sendMessage("§c您并非一个国家的所有者或执政党党魁，无法殖民")
+        if (sender.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+            sender.sendMessage("§c您并非一个国家的所有者或执政党高层，无法殖民")
             return
         }
 
