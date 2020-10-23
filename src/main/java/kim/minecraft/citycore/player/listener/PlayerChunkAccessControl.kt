@@ -23,7 +23,7 @@ object PlayerChunkAccessControl : Listener {
         }
 
         if (e.isCancelled) {
-            e.player.sendMessage("§c您不能未殖民地区进行破坏！")
+            e.player.sendMessage("§c您不能在未殖民地区进行破坏！")
         }
     }
 
@@ -36,7 +36,7 @@ object PlayerChunkAccessControl : Listener {
         }
 
         if (e.isCancelled) {
-            e.player.sendMessage("§c您不能未殖民地区进行破坏！")
+            e.player.sendMessage("§c您不能在未殖民地区进行破坏！")
         }
     }
 
