@@ -6,7 +6,7 @@ import io.izzel.taboolib.util.item.inventory.MenuBuilder
 import kim.minecraft.citycore.CityCore
 import kim.minecraft.citycore.player.PlayerManager
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
-import kim.minecraft.citycore.player.PlayerManager.toHumanRace
+import kim.minecraft.citycore.player.PlayerManager.getHumanRace
 import kim.minecraft.citycore.utils.storage.SettingsStorage
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -85,7 +85,7 @@ class PlayerFirstJoinTask(val player: Player) {
                     player.kickPlayer("角色名不合法，请重新输入")
                     unRegister()
                     return
-                } else if (e.message.toHumanRace() != null) {
+                } else if (e.message.getHumanRace() != null) {
                     player.kickPlayer("一个名为 ${e.message} 的角色已存在，请重新输入")
                     unRegister()
                     return

@@ -1,7 +1,6 @@
 package kim.minecraft.citycore.utils.request
 
 import kim.minecraft.citycore.player.HumanRace
-import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kim.minecraft.citycore.player.PlayerManager.toOfflinePlayer
 import kim.minecraft.citycore.politics.country.Country

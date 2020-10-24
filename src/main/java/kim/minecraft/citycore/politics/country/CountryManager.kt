@@ -19,7 +19,7 @@ object CountryManager {
 
     var countries: MutableMap<UUID, Country> = mutableMapOf()
 
-    fun String.toCountry(): Country? {
+    fun String.getCountry(): Country? {
         return countries.values.firstOrNull { this == it.name }
     }
 

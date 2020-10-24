@@ -4,7 +4,6 @@ import io.izzel.taboolib.module.inject.TListener
 import kim.minecraft.citycore.chunk.ChunkManager.hasCCChunk
 import kim.minecraft.citycore.chunk.ChunkManager.toCCChunk
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
-import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.BlockBreakEvent

@@ -18,7 +18,7 @@ object PlayerManager {
     var players: MutableMap<UUID, Player> = mutableMapOf()
     var humanRaces: MutableMap<UUID, HumanRace> = mutableMapOf()
 
-    fun String.toHumanRace(): HumanRace? {
+    fun String.getHumanRace(): HumanRace? {
         return humanRaces.values.firstOrNull { this == it.name }
     }
 

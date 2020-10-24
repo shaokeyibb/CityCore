@@ -9,7 +9,6 @@ import kim.minecraft.citycore.chunk.tasks.TaskManager
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kim.minecraft.citycore.politics.country.CountryManager.toCountry
-import kim.minecraft.citycore.politics.party.PartyManager.toParty
 import kim.minecraft.citycore.utils.storage.SettingsStorage
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player

@@ -15,11 +15,11 @@ object RequestManager {
         return totalID
     }
 
-    fun RequestSender.getAvailableRequest(): Array<Request> {
+    fun RequestSender.getAvailableSenderRequest(): Array<Request> {
         return requests.values.filter { !it.destroyed && it.sender == this }.toTypedArray()
     }
 
-    fun RequestReceiver.getAvailableRequest(): Array<Request> {
+    fun RequestReceiver.getAvailableReceiverRequest(): Array<Request> {
         return requests.values.filter { !it.destroyed && this in it.receiver }.toTypedArray()
     }
 

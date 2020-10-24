@@ -39,7 +39,7 @@ abstract class Request(val sender: RequestSender, private val handlerObj: Any) {
     }
 
     fun destroy() {
-        sender.uniqueID.toOfflinePlayer().mailTo(arrayOf("您关于 $type 的请求已过期"))
+        sender.uniqueID.toOfflinePlayer().mailTo(arrayOf("您关于 $type 的请求已过期或被拒绝"))
         destroyed = true
         task.cancel()
     }

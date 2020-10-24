@@ -4,13 +4,17 @@ import io.izzel.taboolib.module.command.base.*
 import kim.minecraft.citycore.economy.currency.CurrencyManager
 import kim.minecraft.citycore.economy.currency.CurrencyManager.getCurrency
 import kim.minecraft.citycore.player.HumanRace
+import kim.minecraft.citycore.player.PlayerManager.getHumanRace
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kim.minecraft.citycore.politics.country.CountryManager
+import kim.minecraft.citycore.politics.country.CountryManager.getCountry
 import kim.minecraft.citycore.politics.country.CountryManager.toCountry
 import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.politics.party.PartyManager.toParty
 import kim.minecraft.citycore.utils.request.PlayerJoinCountryRequest
+import kim.minecraft.citycore.utils.request.RequestManager.getAvailableReceiverRequest
+import kim.minecraft.citycore.utils.request.RequestType
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -156,7 +160,7 @@ ${
                 return
             }
 
-            val country = p3[0].toCountry()
+            val country = p3[0].getCountry()
             val currency = p3[1].getCurrency()
             val balance = p3[2].toDoubleOrNull()
 
@@ -212,7 +216,7 @@ ${
                 return
             }
 
-            val country = p3[0].toCountry()
+            val country = p3[0].getCountry()
 
             if (country == null) {
                 p0.sendMessage("§c指定国家不存在")
@@ -230,6 +234,29 @@ ${
     @SubCommand(priority = 0.2, description = "同意国家加入申请", type = CommandType.PLAYER, arguments = ["待处理请求玩家"])
     val accept = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
+            if ((p0 as Player).toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry == null) {
+                p0.sendMessage("§c您当前未属于任何一个国家")
+                return
+            }
+
+            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+                p0.sendMessage("§c您并非一个国家的所有者或执政党高层，无法处理申请")
+                return
+            }
+
+            if (p3[0].getHumanRace() == null) {
+                p0.sendMessage("§c指定玩家不存在")
+                return
+            }
+
+            val sender = p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableReceiverRequest().firstOrNull { it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p3[0].getHumanRace()!!.uniqueID }
+
+            if (sender == null) {
+                p0.sendMessage("§c您指定的玩家没有申请加入您的国家或申请已过期")
+                return
+            }
+
+            sender.allow(p0.toCCPlayer()!!.currentHumanRace.toHumanRace())
 
         }
 
@@ -241,7 +268,29 @@ ${
     @SubCommand(priority = 0.3, description = "拒绝国家加入申请", type = CommandType.PLAYER, arguments = ["待处理请求玩家"])
     val deny = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
+            if ((p0 as Player).toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry == null) {
+                p0.sendMessage("§c您当前未属于任何一个国家")
+                return
+            }
 
+            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+                p0.sendMessage("§c您并非一个国家的所有者或执政党高层，无法处理申请")
+                return
+            }
+
+            if (p3[0].getHumanRace() == null) {
+                p0.sendMessage("§c指定玩家不存在")
+                return
+            }
+
+            val sender = p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableReceiverRequest().firstOrNull { it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p3[0].getHumanRace()!!.uniqueID }
+
+            if (sender == null) {
+                p0.sendMessage("§c您指定的玩家没有申请加入您的国家或申请已过期")
+                return
+            }
+
+            sender.deny(p0.toCCPlayer()!!.currentHumanRace.toHumanRace())
         }
 
         override fun getArguments(): Array<Argument> {

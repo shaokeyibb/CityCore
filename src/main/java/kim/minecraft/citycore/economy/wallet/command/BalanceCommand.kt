@@ -4,9 +4,9 @@ import io.izzel.taboolib.module.command.base.*
 import kim.minecraft.citycore.economy.currency.CurrencyManager
 import kim.minecraft.citycore.economy.currency.CurrencyManager.getCurrency
 import kim.minecraft.citycore.economy.wallet.events.BalanceChangeEvent
-import kim.minecraft.citycore.player.PlayerManager
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
+import kim.minecraft.citycore.player.PlayerManager.getHumanRace
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
@@ -31,7 +31,7 @@ class BalanceCommand : BaseMainCommand() {
     val checkOthers = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
 
-            val temp = p3[0].toHumanRace()
+            val temp = p3[0].getHumanRace()
 
             if (temp == null) {
                 p0.sendMessage("§c指定玩家不存在")
@@ -56,7 +56,7 @@ class BalanceCommand : BaseMainCommand() {
     val pay = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
 
-            val human = p3[0].toHumanRace()
+            val human = p3[0].getHumanRace()
             val currency = p3[1].getCurrency()
             val balance = p3[2].toDoubleOrNull()
 
@@ -109,7 +109,7 @@ class BalanceCommand : BaseMainCommand() {
     val admin = object : BaseSubCommand() {
         override fun onCommand(p0: CommandSender, p1: Command?, p2: String?, p3: Array<out String>) {
 
-            val human = p3[1].toHumanRace()
+            val human = p3[1].getHumanRace()
             val currency = p3[2].getCurrency()
 
             if (human == null) {
