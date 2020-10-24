@@ -224,7 +224,7 @@ ${
                 return
             }
 
-            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableSenderRequest().firstOrNull { it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p3[0].getHumanRace()!!.uniqueID } != null) {
+            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableSenderRequest().firstOrNull {  it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p0.toCCPlayer()!!.currentHumanRace } != null) {
                 p0.sendMessage("§c在上一个请求过期或被处理前，您不能重复申请国家加入请求")
                 return
             }
