@@ -1,6 +1,7 @@
 package kim.minecraft.citycore.utils.request
 
 import kim.minecraft.citycore.player.HumanRace
+import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
 import kim.minecraft.citycore.player.PlayerManager.toOfflinePlayer
 import kim.minecraft.citycore.politics.country.Country
@@ -19,6 +20,7 @@ class PlayerJoinCountryRequest(sender: RequestSender, handlerObj: Any) : Request
         else {
             requestSender.player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被通过"))
             country.members.add(requestSender.uniqueID)
+            requestSender.currentCountry = country.uniqueID
             200
         }
     }
