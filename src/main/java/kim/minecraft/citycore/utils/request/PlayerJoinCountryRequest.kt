@@ -20,11 +20,12 @@ class PlayerJoinCountryRequest(sender: RequestSender, handlerObj: Any) : Request
             requestSender.player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被通过"))
             country.members.add(requestSender.uniqueID)
             requestSender.currentCountry = country.uniqueID
+            destroy()
             200
         }
     }
     override val onDeny: (RequestSender, Any) -> Int = { requestSender: RequestSender, country: Any ->
-        (requestSender as HumanRace).player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求拒绝通过"))
+        (requestSender as HumanRace).player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被拒绝"))
         destroy()
         200
     }
