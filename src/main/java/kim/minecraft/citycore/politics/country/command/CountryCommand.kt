@@ -14,6 +14,7 @@ import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.politics.party.PartyManager.toParty
 import kim.minecraft.citycore.utils.request.PlayerJoinCountryRequest
 import kim.minecraft.citycore.utils.request.RequestManager.getAvailableReceiverRequest
+import kim.minecraft.citycore.utils.request.RequestManager.getAvailableSenderRequest
 import kim.minecraft.citycore.utils.request.RequestType
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
@@ -223,7 +224,13 @@ ${
                 return
             }
 
+            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableSenderRequest().firstOrNull { it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p3[0].getHumanRace()!!.uniqueID } != null) {
+                p0.sendMessage("§c在上一个请求过期或被处理前，您不能重复申请国家加入请求")
+                return
+            }
+
             PlayerJoinCountryRequest(p0.toCCPlayer()!!.currentHumanRace.toHumanRace(), country)
+            p0.sendMessage("国家加入申请已发送")
         }
 
         override fun getArguments(): Array<Argument> {

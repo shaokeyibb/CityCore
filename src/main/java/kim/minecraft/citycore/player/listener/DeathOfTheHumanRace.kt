@@ -20,6 +20,7 @@ object DeathOfTheHumanRace : Listener {
     fun onDeath(e: PlayerDeathEvent) {
         //Death Message Handler
         e.deathMessage = e.deathMessage?.replace(e.entity.name, e.entity.toCCPlayer()!!.currentHumanRace.toHumanRace().name, false)
+        e.entity.spigot().respawn()
         if (e.entity.toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry?.toCountry()?.owner == e.entity.toCCPlayer()!!.currentHumanRace.toHumanRace()) {
             e.deathMessage = "悲报: 国家 ${e.entity.toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry?.toCountry()?.name} 元首 ${e.entity.toCCPlayer()!!.currentHumanRace.toHumanRace().name} 与世长辞了！"
             return
