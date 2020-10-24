@@ -84,7 +84,7 @@ class CountryCommand : BaseMainCommand() {
         }
 
         if (CurrencyManager.currencies.values.firstOrNull { it.name == args[2] } != null) {
-            sender.sendMessage("§c国家创建失败，一个名为 ${args[0]} 的货币已存在")
+            sender.sendMessage("§c国家创建失败，一个名为 ${args[2]} 的货币已存在")
             return
         }
 
@@ -155,7 +155,7 @@ ${
                 return
             }
 
-            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+            if (!p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
                 p0.sendMessage("§c您并非一个国家的所有者或执政党高层，无法向其他国家转账")
                 return
             }
@@ -239,7 +239,7 @@ ${
                 return
             }
 
-            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+            if (!p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
                 p0.sendMessage("§c您并非一个国家的所有者或执政党高层，无法处理申请")
                 return
             }
@@ -273,7 +273,7 @@ ${
                 return
             }
 
-            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+            if (!p0.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
                 p0.sendMessage("§c您并非一个国家的所有者或执政党高层，无法处理申请")
                 return
             }

@@ -24,7 +24,7 @@ class ChunkCommand : BaseMainCommand() {
             return
         }
 
-        if (sender.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
+        if (!sender.toCCPlayer()!!.currentHumanRace.toHumanRace().isOwnerOrPartyOperatorInCurrentCountry()) {
             sender.sendMessage("§c您并非一个国家的所有者或执政党高层，无法殖民")
             return
         }
