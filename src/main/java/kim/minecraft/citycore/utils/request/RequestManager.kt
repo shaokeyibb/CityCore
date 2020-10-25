@@ -25,6 +25,6 @@ object RequestManager {
     }
 
     fun finalize() {
-        requests.values.filter { !it.destroyed }.forEach { (it.sender as HumanRace).player.toOfflinePlayer().mailTo(arrayOf("您关于 ${it.type} 的请求已过期")) }
+        requests.values.filter { !it.destroyed }.forEach { (it.sender as HumanRace).player.toOfflinePlayer().mailTo(arrayOf("您关于 ${it.type.friendName} 的请求已过期")) }
     }
 }
