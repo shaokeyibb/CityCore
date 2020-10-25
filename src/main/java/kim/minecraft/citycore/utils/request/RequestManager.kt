@@ -1,7 +1,6 @@
 package kim.minecraft.citycore.utils.request
 
 import kim.minecraft.citycore.player.HumanRace
-import kim.minecraft.citycore.player.PlayerManager.toOfflinePlayer
 import kim.minecraft.citycore.utils.lateralmessenger.MailServiceManager.mailTo
 import kim.minecraft.citycore.utils.request.tags.RequestReceiver
 import kim.minecraft.citycore.utils.request.tags.RequestSender
@@ -25,6 +24,6 @@ object RequestManager {
     }
 
     fun finalize() {
-        requests.values.filter { !it.destroyed }.forEach { (it.sender as HumanRace).player.toOfflinePlayer().mailTo(arrayOf("您关于 ${it.type.friendName} 的请求已过期")) }
+        requests.values.filter { !it.destroyed }.forEach { (it.sender as HumanRace).mailTo(arrayOf("您关于 ${it.type.friendName} 的请求已过期")) }
     }
 }

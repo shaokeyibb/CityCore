@@ -2,7 +2,6 @@ package kim.minecraft.citycore.utils.request
 
 import kim.minecraft.citycore.player.HumanRace
 import kim.minecraft.citycore.player.PlayerManager.toHumanRace
-import kim.minecraft.citycore.player.PlayerManager.toOfflinePlayer
 import kim.minecraft.citycore.politics.country.Country
 import kim.minecraft.citycore.politics.party.Party
 import kim.minecraft.citycore.utils.lateralmessenger.MailServiceManager.mailTo
@@ -17,14 +16,14 @@ class PlayerJoinCountryRequest(sender: RequestSender, handlerObj: Any) : Request
     override val onAllow: (RequestSender, Any) -> Int = { requestSender: RequestSender, country: Any ->
         if ((requestSender as HumanRace).currentCountry != null) 403
         else {
-            requestSender.player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被通过"))
+            requestSender.mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被通过"))
             country.members.add(requestSender.uniqueID)
             requestSender.currentCountry = country.uniqueID
             200
         }
     }
     override val onDeny: (RequestSender, Any) -> Int = { requestSender: RequestSender, country: Any ->
-        (requestSender as HumanRace).player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被拒绝"))
+        (requestSender as HumanRace).mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被拒绝"))
         destroy()
         200
     }

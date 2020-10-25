@@ -39,6 +39,10 @@ object MailServiceManager : Listener {
         createTask(uniqueId.toCCPlayer().currentHumanRace.toHumanRace(), message)
     }
 
+    fun HumanRace.mailTo(message: Array<out String>) {
+        createTask(this, message)
+    }
+
     fun HumanRace.getAvailableTasks(): List<MailService> {
         return getTasks(this)
     }
