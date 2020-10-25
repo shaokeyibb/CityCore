@@ -1,5 +1,6 @@
 package kim.minecraft.citycore.utils.lateralmessenger
 
+import io.izzel.taboolib.module.inject.TListener
 import kim.minecraft.citycore.CityCore
 import kim.minecraft.citycore.player.HumanRace
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
@@ -8,11 +9,23 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.bukkit.OfflinePlayer
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerJoinEvent
 import java.io.File
 
-object MailServiceManager {
+@TListener
+object MailServiceManager : Listener {
 
     val services: MutableList<MailService> = mutableListOf()
+
+    @EventHandler
+    fun onJoin(e: PlayerJoinEvent) {
+        services.filter { it.checkIsCurrentHumanRace() && it.who.toHumanRace().alive }.forEach {
+            it.sendMessage()
+            it.destroy()
+        }
+    }
 
     private fun createTask(player: HumanRace, message: Array<out String>) {
         MailService(player.uniqueID, message)

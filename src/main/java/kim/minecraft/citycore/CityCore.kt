@@ -24,6 +24,7 @@ object CityCore : Plugin() {
     }
 
     override fun onDisable() {
+        Bukkit.getOnlinePlayers().forEach { it.kickPlayer("服务器已关闭") }
         RequestManager.finalize()
         DataStorage.serializeAll()
     }

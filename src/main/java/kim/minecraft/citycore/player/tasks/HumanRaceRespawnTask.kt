@@ -43,7 +43,6 @@ class HumanRaceRespawnTask(val player: Player) {
         override fun quit(): String = ""
 
         override fun cancel() {
-            player.getBukkitPlayer().sendMessage("§c您不能取消创建新角色，请重新输入")
             HandlerList.unregisterAll(action)
             return
         }

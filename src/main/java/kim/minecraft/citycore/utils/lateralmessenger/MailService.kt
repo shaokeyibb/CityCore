@@ -7,9 +7,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
-import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
-import java.time.LocalTime
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -19,31 +18,18 @@ class MailService(@Serializable(with = UUIDAsStringSerializer::class) val who: U
     @Serializable(with = UUIDAsStringSerializer::class)
     val uniqueID: UUID = UUID.randomUUID()
 
-    private val time = LocalTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+    private val time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 
-    @Transient
-    private val action = object : Listener {
-        @EventHandler
-        fun onJoin() {
-            if (!checkIsCurrentHumanRace() && !who.toHumanRace().alive) {
-                destroy()
-                return
-            }
-            sendMessage()
-        }
-    }
-
-    private fun sendMessage() {
+    fun sendMessage() {
         who.toHumanRace().getPlayer().getBukkitPlayer().sendMessage("您于 $time 收到了以下的消息:")
         who.toHumanRace().getPlayer().getBukkitPlayer().sendMessage(message)
     }
 
-    private fun checkIsCurrentHumanRace(): Boolean {
+    fun checkIsCurrentHumanRace(): Boolean {
         return who.toHumanRace().getPlayer().currentHumanRace == who
     }
 
-    private fun destroy() {
-        removeTask()
+    fun destroy() {
         MailServiceManager.services.remove(this)
     }
 
@@ -58,16 +44,7 @@ class MailService(@Serializable(with = UUIDAsStringSerializer::class) val who: U
             return
         }
 
-        addTask()
         MailServiceManager.services.add(this)
-    }
-
-    private fun addTask() {
-        Bukkit.getPluginManager().registerEvents(action, CityCore.plugin)
-    }
-
-    private fun removeTask() {
-        HandlerList.unregisterAll(action)
     }
 
     init {
