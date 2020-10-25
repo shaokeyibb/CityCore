@@ -17,7 +17,7 @@ object PlayerFirstJoinChecker : Listener {
 
     @EventHandler
     fun onJoin(e: PlayerJoinEvent) {
-        if (e.player.toCCPlayer() == null) {
+        if (e.player.toCCPlayer() == null || !e.player.toCCPlayer()!!.currentHumanRace.toHumanRace().alive) {
             e.player.setDisplayName("一位尚未初始化角色的新玩家")
             e.player.setPlayerListName("一位尚未初始化角色的新玩家")
             e.joinMessage = "§e§l一位尚未初始化角色的新玩家 加入了服务器"
@@ -30,7 +30,7 @@ object PlayerFirstJoinChecker : Listener {
 
         @EventHandler(priority = EventPriority.HIGH)
         fun onLeave(e: PlayerQuitEvent) {
-            if (e.player.toCCPlayer() == null) {
+            if (e.player.toCCPlayer() == null|| !e.player.toCCPlayer()!!.currentHumanRace.toHumanRace().alive) {
                 e.player.setDisplayName("一位尚未初始化角色的新玩家")
                 e.player.setPlayerListName("一位尚未初始化角色的新玩家")
                 e.quitMessage = "§e§l一位尚未初始化角色的新玩家 退出了服务器"
