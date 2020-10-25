@@ -20,7 +20,6 @@ class PlayerJoinCountryRequest(sender: RequestSender, handlerObj: Any) : Request
             requestSender.player.toOfflinePlayer().mailTo(arrayOf("您申请加入 ${(country as Country).name} 的请求已被通过"))
             country.members.add(requestSender.uniqueID)
             requestSender.currentCountry = country.uniqueID
-            destroy()
             200
         }
     }
