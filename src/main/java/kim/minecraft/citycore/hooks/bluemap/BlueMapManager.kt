@@ -46,7 +46,7 @@ object BlueMapManager {
                 this.label = """
                     地块: ${entry.key}
                     <br>
-                    所有者: ${entry.value.getBelongingsCountry()?.name ?: "无"}
+                    所有国家: ${entry.value.getBelongingsCountry()?.name ?: "无"}
                 """.trimIndent()
             }
         }
