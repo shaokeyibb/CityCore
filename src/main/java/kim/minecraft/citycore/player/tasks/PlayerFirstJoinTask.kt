@@ -89,6 +89,10 @@ class PlayerFirstJoinTask(val player: Player) {
                     player.kickPlayer("一个名为 ${e.message} 的角色已存在，请重新输入")
                     unRegister()
                     return
+                } else if (e.message.length > 12) {
+                    player.kickPlayer("角色名过长，请重新输入")
+                    unRegister()
+                    return
                 }
                 PlayerManager.createPlayer(player, e.message)
                 player.sendMessage("角色创建成功，欢迎您，${e.message}")

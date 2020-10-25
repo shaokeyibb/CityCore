@@ -21,7 +21,7 @@ object MailServiceManager : Listener {
 
     @EventHandler
     fun onJoin(e: PlayerJoinEvent) {
-        services.filter { it.checkIsCurrentHumanRace() && it.who.toHumanRace().alive }.forEach {
+        services.filter { it.who == e.player.uniqueId && it.checkIsCurrentHumanRace() && it.who.toHumanRace().alive }.forEach {
             it.sendMessage()
             it.destroy()
         }

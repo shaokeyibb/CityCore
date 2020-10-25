@@ -27,17 +27,22 @@ class HumanRaceRespawnTask(val player: Player) {
                 player.getBukkitPlayer().sendMessage("§c您的输入不合法，请重新输入")
                 HandlerList.unregisterAll(action)
                 HumanRaceRespawnTask(player)
-                return false
+                return true
             } else if (p0.getHumanRace() != null) {
                 player.getBukkitPlayer().sendMessage("一个名为 $p0 的角色已存在，请重新输入")
                 HandlerList.unregisterAll(action)
                 HumanRaceRespawnTask(player)
-                return false
+                return true
+            } else if (p0.length > 12) {
+                player.getBukkitPlayer().sendMessage("角色名过长，请重新输入")
+                HandlerList.unregisterAll(action)
+                HumanRaceRespawnTask(player)
+                return true
             }
             player.nextGeneration(PlayerManager.createHumanRace(player.getBukkitPlayer(), p0))
             player.getBukkitPlayer().sendMessage("新角色创建成功，开始新的生活吧!")
             HandlerList.unregisterAll(action)
-            return false
+            return true
         }
 
         override fun quit(): String = ""
