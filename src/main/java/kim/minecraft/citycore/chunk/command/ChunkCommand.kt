@@ -4,6 +4,7 @@ import io.izzel.taboolib.module.command.base.BaseCommand
 import io.izzel.taboolib.module.command.base.BaseMainCommand
 import io.izzel.taboolib.module.command.base.CommandType
 import io.izzel.taboolib.module.command.base.SubCommand
+import kim.minecraft.citycore.chunk.ChunkManager.hasCCChunk
 import kim.minecraft.citycore.chunk.tasks.CountryClaimChunkTask
 import kim.minecraft.citycore.chunk.tasks.TaskManager
 import kim.minecraft.citycore.player.PlayerManager.toCCPlayer
@@ -65,10 +66,14 @@ class ChunkCommand : BaseMainCommand() {
             return
         }
 
-        val chunk = (sender as Player).toCCPlayer()!!.getChunkAtPlace()
-        sender.sendMessage("""
+        if ((sender as Player).location.chunk.hasCCChunk()) {
+            val chunk = sender.toCCPlayer()!!.getChunkAtPlace()
+            sender.sendMessage("""
             区块位置: ${chunk.chunkSearcher}
-            区块归属:${if (chunk.getBelongingsCountry() != null) chunk.getBelongingsCountry()!!.name else "无"}
+            区块归属:${if (chunk.getBelongingsCountry() != null) chunk.getBelongingsCountry()!!.name else "无"}${if (chunk.getTempBelongingsCountry() != null) "(临时所有者: ${chunk.getTempBelongingsCountry()!!.name})" else ""}
         """.trimIndent())
+        } else {
+            sender.sendMessage("您所在的位置无区块信息")
+        }
     }
 }
