@@ -10,3 +10,4 @@ HumanRaceEyesBlindRefreshTimeTicks: 5
 PlayerTagsRefreshTicks: 1
 FoodPoisonTicksFrom: 72000
 FoodPoisonTicksUntil: 144000
+ChatRadius: 50.0
