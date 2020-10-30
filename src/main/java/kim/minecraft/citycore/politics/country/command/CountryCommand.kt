@@ -224,7 +224,7 @@ ${
                 return
             }
 
-            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableSenderRequest().firstOrNull {  it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p0.toCCPlayer()!!.currentHumanRace } != null) {
+            if (p0.toCCPlayer()!!.currentHumanRace.toHumanRace().getAvailableSenderRequest().firstOrNull { it.type == RequestType.PLAYER_JOIN_COUNTRY && it.sender.uniqueID == p0.toCCPlayer()!!.currentHumanRace } != null) {
                 p0.sendMessage("§c在上一个请求过期或被处理前，您不能重复申请国家加入请求")
                 return
             }
@@ -305,5 +305,13 @@ ${
         }
     }
 
+    @SubCommand(priority = 0.4, description = "退出当前国家", type = CommandType.PLAYER, arguments = [])
+    fun leave(p0: CommandSender, p3: Array<String>) {
+        if ((p0 as Player).toCCPlayer()!!.currentHumanRace.toHumanRace().currentCountry == null) {
+            p0.sendMessage("§c您当前未属于任何一个国家")
+            return
+        }
+
+    }
 
 }
