@@ -11,3 +11,6 @@ This plugin can only be used on StarLight Minecraft Server
 
 
 You have not been permitted to use this plugin
+
+
+### 项目已废弃，仅供围观
